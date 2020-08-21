@@ -1,0 +1,10 @@
+{% extends 'personal/base.html' %}
+
+{% block content %}
+
+
+{% for user in users %}
+    {{user.email}}
+    {{user.cnumber}}
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'personal/base.html' %}
+{% block content %}
+
+    <h2>This is registration page</h2>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        {% for field in registration_form %}
+            <p>
+            {{field.label_tag}}
+            {{field}}
+
+            {% if field.help_text %}
+                <small style="color: grey;">{{field.help_text}}</small>
+            {% endif %}
+            
+            {% for error in field.errors%}
+                <small style="color: red;">{{error}}</small>
+            {% endfor %}
+            </p>
+        {% endfor %}
+
+        <button type="submit">Submit</button>
+    </form>
+{% endblock content %}
+
