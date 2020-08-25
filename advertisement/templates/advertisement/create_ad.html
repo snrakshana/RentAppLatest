@@ -1,0 +1,19 @@
+{% extends 'personal/base.html' %}
+
+
+{% block content %}
+
+
+
+
+			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+                
+                {{form}}
+				<button type="submit">Submit</button>
+			</form>	
+	
+
+
+
+
+{% endblock content %}

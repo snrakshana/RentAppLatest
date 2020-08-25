@@ -4,6 +4,8 @@ from django.core.exceptions import ValidationError
 
 from account.forms import RegistrationForm, LoginForm , AccountUpdateForm
 
+from advertisement.models import ADPost
+
 def registration_view(request):
 	context = {}
 	if request.POST:
@@ -83,6 +85,12 @@ def account_view(request):
 
 	context['account_form'] = form
 
+	ads = ADPost.objects.filter(author=request.user)
+	context["ads"] = ads
 	
 
 	return render(request, "account/account.html", context)
+
+
+def must_authenticate_view(request):
+	return render(request, 'account/must_authenticate.html', {})

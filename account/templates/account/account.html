@@ -37,8 +37,14 @@
 
 </form>
 
+  {% if ads %}
+{% for ad in ads %}
+    <a href="#">{{ad}}</a>
+{% endfor %}
 
-
+ {% else %}
+ <p>you dont have any...  <a href="{% url 'create_ad' %}">Create one here</a></p>
+{% endif %}
 
 
 

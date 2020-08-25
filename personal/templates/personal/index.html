@@ -3,9 +3,18 @@
 {% block content %}
 
 <h2>Registered Users</h2>
+<p><a href="{% url 'create_ad' %}">Create Ad</a></p>
 {% for user in users %}
     {{user.email}}
     {{user.cnumber}}
+{% endfor %}
+
+<hr>
+
+{% for ad in ads %}
+    {{ad.title}}
+    {{ad.description}}
+   
 {% endfor %}
 
 
