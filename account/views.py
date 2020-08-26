@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse,reverse
 from django.contrib.auth import login,authenticate,logout
 from django.core.exceptions import ValidationError
-
+from django.contrib.auth.decorators import login_required
 from account.forms import RegistrationForm, LoginForm , AccountUpdateForm
 
 from advertisement.models import ADPost
@@ -56,6 +56,7 @@ def login_view(request):
 
 	# print(form)
 	return render(request, "account/login.html", context)
+
 
 def account_view(request):
 

@@ -12,9 +12,13 @@
 <hr>
 
 {% for ad in ads %}
-    {{ad.title}}
-    {{ad.description}}
+    
+    <a href="{% url 'ad_detail' ad.slug %}">{{ad.title}}</a>
+    <img src="{{ad.image.url}}" alt="">
    
+   {{ad.description}}
+   {{ad.author}}
+   {{ad.author.cnumber}}
 {% endfor %}
 
 

@@ -39,7 +39,8 @@
 
   {% if ads %}
 {% for ad in ads %}
-    <a href="#">{{ad}}</a>
+    <a href="{% url 'ad_detail' ad.slug %}">{{ad}}</a>
+     <img src="{{ad.image.url}}" alt="">
 {% endfor %}
 
  {% else %}

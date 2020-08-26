@@ -1,0 +1,17 @@
+{% load static %}
+
+{% block content %}
+    {{ad_detail.title}}
+    {{ad_detail.description}}
+    {{ad_detail.author}}
+    {{ad_detail.author.cnumber}}
+    <img src="{{ad_detail.image.url}}" alt="">
+    {% if ad_detail.author == request.user %}
+    <a href="{% url 'edit_ad' ad_detail.slug %}">Update post</a>
+    <form method="POST" action="{% url 'delete_ad' ad_detail.slug %}">
+    {% csrf_token %}
+     <button type="submit"> Delete</button>
+    </form>
+    {% endif %}
+    
+{% endblock content %}
