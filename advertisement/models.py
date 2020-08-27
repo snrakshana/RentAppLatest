@@ -16,8 +16,8 @@ def upload_location(instance, filename):
 
 class ADPost(models.Model):
 	title 					= models.CharField(max_length=50, null=False, blank=False)
-	description 			= models.TextField(max_length=5000, null=False, blank=False)
-	image		 			= models.ImageField(upload_to=upload_location, null=True, blank=True,default = "180px-FC_Barcelona_(crest).svg.png")
+	description 			= models.TextField(max_length=5000, null=False, blank=False )
+	image		 			= models.ImageField(upload_to=upload_location, null=True, blank=False)
 	date_published 			= models.DateTimeField(auto_now_add=True, verbose_name="date published")
 	date_updated 			= models.DateTimeField(auto_now=True, verbose_name="date updated")
 	author 					= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -38,3 +38,6 @@ def pre_save_blog_post_receiver(sender, instance, *args, **kwargs):
 		instance.slug = slugify(instance.author.username + "-" + instance.title)
 
 pre_save.connect(pre_save_blog_post_receiver, sender=ADPost)
+
+
+
