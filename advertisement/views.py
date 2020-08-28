@@ -19,12 +19,14 @@ def create_ad(request):
         return redirect(reverse('must_authenticate'))
 
     form = CreateAdvertisementForm(request.POST or None, request.FILES or None)
+
     if form.is_valid():
         obj = form.save(commit=False)
         author = User.objects.filter(email=user.email).first()
         obj.author = author
         obj.save()
         form = CreateAdvertisementForm()
+        return redirect(reverse('index'))
 
     context['form'] = form
 
@@ -65,6 +67,20 @@ def edit_ad_view(request, slug):
             "title": ad_post.title,
             "description": ad_post.description,
             "image": ad_post.image,
+            "district":ad_post.district,
+            "price":ad_post.price,
+            "city":ad_post.city,
+            "is_negotiable":ad_post.is_negotiable,
+            "fuel_type":ad_post.fuel_type,
+            "transmission":ad_post.transmission,
+            "body_type":ad_post.body_type,
+            "vehicle_model":ad_post.vehicle_model,
+            "vehicle_brand":ad_post.vehicle_brand,
+
+
+
+
+
         }
     )
 
