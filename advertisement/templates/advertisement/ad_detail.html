@@ -1,17 +1,315 @@
-{% load static %}
+{% extends 'personal/base.html' %} {% load static %} {% block content %}
+<style>
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-{% block content %}
-    {{ad_detail.title}}
-    {{ad_detail.description}}
-    {{ad_detail.author}}
-    {{ad_detail.author.cnumber}}
-    <img src="{{ad_detail.image.url}}" alt="">
-    {% if ad_detail.author == request.user %}
-    <a href="{% url 'edit_ad' ad_detail.slug %}">Update post</a>
-    <form method="POST" action="{% url 'delete_ad' ad_detail.slug %}">
-    {% csrf_token %}
-     <button type="submit"> Delete</button>
-    </form>
-    {% endif %}
-    
+    img {
+        width: 100%;
+    }
+
+    .container-fluid {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #eee;
+    }
+
+    .share-button {
+        width: fit-content;
+        height: fit-content;
+        background: #dfe6e9;
+        border-radius: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 50px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        transition: .3s linear;
+    }
+
+    .share-button:hover {
+        transform: scale(1.1);
+    }
+
+    .share-button span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        background: #2d3436;
+        color: #f1f1f1;
+        text-align: center;
+        transition: .6s linear;
+        border-radius: 40px;
+
+    }
+
+    .share-button:hover span {
+        transform: translateX(-100%);
+        transition-delay: .3s;
+    }
+
+    .share-button p {
+        flex: 1;
+        color: #2d3436;
+        line-height: 65px;
+        opacity: 0;
+        transition: .3s linear;
+    }
+
+    .share-button:hover p {
+        opacity: 1;
+        transform: translateX(0);
+        transition-delay: 0.7s;
+    }
+
+
+
+    /* 
+* Design by Robert Mayer:https://goo.gl/CJ7yC8
+*
+*I intentionally left out the line that was supposed to be below the subheader simply because I don't like how it looks.
+*
+* Chronicle Display Roman font was substituted for similar fonts from Google Fonts.
+*/
+
+    .wrapper {
+        height: 80%;
+        width: 70%;
+        margin: 50px auto;
+        border-radius: 7px 7px 7px 7px;
+        align-items: center;
+        /* VIA CSS MATIC https://goo.gl/cIbnS */
+        -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .product-img {
+        float: left;
+        height: 100%;
+        width: 50%;
+        background-color: #ffffff;
+
+    }
+
+    .product-img img {
+        border-radius: 7px;
+        transform: translate(-4rem, 4rem);
+        height: 80%;
+        width: 100%;
+    }
+
+    .product-info {
+        float: left;
+        height: 100%;
+        width: 50%;
+        border-radius: 0 7px 10px 7px;
+        background-color: #ffffff;
+    }
+
+
+    .product-text {
+        height: 70%;
+        width: 100%;
+    }
+
+    .product-text h1 {
+        margin: 0 0 0 38px;
+        padding-top: 52px;
+        font-size: 34px;
+        color: #474747;
+    }
+
+    .product-text h1,
+    .product-price-btn p {
+        font-family: 'Bentham', serif;
+    }
+
+    .product-text h2 {
+        margin: 0 0 47px 38px;
+        font-size: 19px;
+        font-family: 'Bentham', serif;
+        font-weight: 400;
+        text-transform: capitalize;
+        color: #585757;
+    }
+
+    .product-text p {
+        height: 100%;
+        margin: 0 0 0 38px;
+        font-family: 'Playfair Display', serif;
+        color: #8d8d8d;
+        line-height: 1.7em;
+        font-size: 15px;
+        font-weight: lighter;
+    }
+
+    .product-price-btn {
+        height: 103px;
+        width: 90%;
+        position: relative;
+    }
+
+    .product-price-btn p {
+        height: 50px;
+        font-family: 'Trocchi', serif;
+        font-size: 18px;
+        font-weight: lighter;
+        color: #474747;
+        float: left;
+    }
+
+    .product-price-btn span {
+        height: 30px;
+        font-family: 'Suranna', serif;
+        font-size: 34px;
+    }
+
+    .product-price-btn button {
+        float: right;
+        height: 30px;
+        margin-top: 2%;
+        width: 176px;
+        box-sizing: border-box;
+        border: transparent;
+        text-align: center;
+        border-radius: 60px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #ffffff;
+        background-color: #9cebd5;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .editable {
+        margin-right: 50px;
+        float: right;
+        margin-top: 15px;
+
+    }
+
+
+
+    @media (max-width: 800px) {
+        .container-fluid {
+            align-items: unset;
+        }
+
+        .wrapper {
+            height: 80%;
+            width: 90%;
+            margin-top: 15px;
+            border-radius: 7px 7px 7px 7px;
+            /* VIA CSS MATIC https://goo.gl/cIbnS */
+            -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+            box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-img {
+            float: none;
+            border-radius: 7px 7px 0 0;
+            height: 50%;
+            width: 100%;
+        }
+
+        .product-img img {
+            border-radius: 7px 7px 0 0;
+            transform: translate(0, 0);
+            height: 100%;
+        }
+
+        .product-info {
+            float: none;
+            height: 70%;
+            width: 100%;
+            border-radius: 0 0 10px 7px;
+            background-color: #ffffff;
+        }
+
+        .product-price-btn p {
+            float: unset;
+            width: 100%;
+            text-align: center;
+        }
+
+        .product-price-btn {
+            margin: 0;
+            width: 100%;
+        }
+
+        .product-price-btn button {
+            float: unset;
+            justify-content: center;
+            margin: auto;
+            padding: 0;
+        }
+
+
+    }
+</style>
+
+<div class="container-fluid m-0 p-0">
+
+
+    <div class="wrapper">
+        <div class="product-img">
+            <img src="{{ad_detail.image.url}}">
+        </div>
+
+        <div class="product-info">
+            {% if ad_detail.author == request.user %}
+            <div class="editable">
+                <form method="POST" action="{% url 'delete_ad' ad_detail.slug %}">
+                    {% csrf_token %}
+                    <a href="{% url 'edit_ad' ad_detail.slug %}" class="btn btn-secondary btn-sm">Update
+                        post</a>
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </div>
+            {% endif %}
+            <div class="product-text">
+                <h1>{{ad_detail.title}}</h1>
+                <h2>{{ad_detail.district}} - {{ad_detail.city}}</h2>
+                <p>
+                    Description - {{ad_detail.description}}<br>
+                    Vehicle Brand - {{ad_detail.vehicle_brand}}<br>
+                    Vehicle model - {{ad_detail.vehicle_model}}<br>
+                    body type - {{ad_detail.body_type}}<br>
+                    transmission - {{ad_detail.transmission}}<br>
+                    fuel_type - {{ad_detail.fuel_type}}<br>
+                    is negotiable - {{ad_detail.is_negotiable}}<br>
+                    date published - {{ad_detail.date_published}}<br>
+                    author - {{ad_detail.author}}<br>
+                </p>
+            </div>
+            <div class="product-price-btn">
+                <p>Rs.<span>{{ad_detail.price}}</span></p>
+                <button type="button" class="share-button">
+                    <span style="font-size: 16px; line-height: 30px;">Contact</span>
+                    <p>{{ad_detail.author.cnumber}}</p>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
 {% endblock content %}

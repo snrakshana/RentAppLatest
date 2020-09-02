@@ -61,6 +61,7 @@ def edit_ad_view(request, slug):
             obj.save()
             context['success_message'] = "Updated"
             ad_post = obj
+            return redirect(reverse('index'))
 
     form = UpdateAdvertisementForm(
         initial={
@@ -76,11 +77,6 @@ def edit_ad_view(request, slug):
             "body_type":ad_post.body_type,
             "vehicle_model":ad_post.vehicle_model,
             "vehicle_brand":ad_post.vehicle_brand,
-
-
-
-
-
         }
     )
 

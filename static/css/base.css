@@ -1,0 +1,68 @@
+div.menu-item {
+    width: 100%;
+    margin: 0;
+    background: #fff;
+    padding: 0;
+}
+
+div.menu-item ul {
+    list-style: none;
+    float: right;
+}
+
+div.menu-item ul li {
+    display: inline-block;
+}
+
+div.menu-item ul li a {
+    color: #aaa;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.login {
+    text-align: right;
+}
+
+div.menu-item ul li a,
+div.menu-item ul li a:after,
+div.menu-item ul li a:before {
+    transition: all .5s;
+}
+
+div.menu-item ul li a:hover,
+div.menu-item ul li a:active {
+    text-decoration: none;
+    color: #555;
+}
+
+div.menu-item ul li a {
+    position: relative;
+}
+
+div.menu-item ul li a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #333;
+    height: 1px;
+}
+
+div.menu-item ul li a:hover:after {
+    width: 100%;
+}
+
+.nav-link {
+    padding-left: 25%;
+}
+
+@media screen and (max-width: 768px) {
+    div.menu-item ul {
+        float: none;
+    }
+}
