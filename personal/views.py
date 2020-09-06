@@ -9,7 +9,7 @@ def index(request):
     users = User.objects.all()
     ads = ADPost.objects.all()
 
-    paginator = Paginator(ads,8)
+    paginator = Paginator(ads,12)
     page = request.GET.get('page')
 
     ads = paginator.get_page(page)

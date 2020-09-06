@@ -1,63 +1,43 @@
 {% extends 'personal/base.html' %} {% load static %} {% block content %}
 <link rel="stylesheet" href={% static 'css/index.css' %}>
-<style>
-    @media screen and (max-width: 768px) {
-    
-}
-</style>
-<body>
-    <div class="wrapper d-flex align-items-stretch">
-        <nav id="sidebar">
-            <div class="custom-menu">
-                <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                    <i class="fa fa-filter"></i>
-                    <span class="sr-only">Toggle Menu</span>
-                </button>
-            </div>
-            <div class="p-4">
 
-            </div>
-        </nav>
-
-        <!-- Page Content  -->
-        <div id="content" class="p-4 p-md-5 pt-5">
-            <div class="row">
-                {% for ad in ads %}
-                <div class="col-md-3 col-sm-6">
-                    <a href="{% url 'ad_detail' ad.slug %}">
-                        <div class="card card-block">
-                            <img class="img-fluid" src="{{ad.image.url}}" alt="" />
-                            <h5 class="card-title mt-3 mb-3">{{ad.title}}</h5>
-                            <p class="card-text">{{ad.description}}</p>
-                        </div>
-                    </a>
+<!-- Page Content  -->
+<div id="content" class="p-md-5 pt-5 pb-0">
+    <div class="row">
+        {% for ad in ads %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <a href="{% url 'ad_detail' ad.slug %}">
+                <div class="card card-block">
+                    <img class="img-fluid" src="{{ad.image.url}}" alt="" />
+                    <h5 class="card-title mt-3 mb-3">{{ad.title}}</h5>
+                    <p class="card-text">{{ad.description}}</p>
                 </div>
-                {% endfor %}
-            </div>
-            <div class="pagination">
-                <span class="step-links">
-                    {% if ads.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ ads.previous_page_number }}">previous</a>
-                    {% endif %}
-
-                    <span class="current">
-                        Page {{ ads.number }} of {{ ads.paginator.num_pages }}.
-                    </span> {% if ads.has_next %}
-                    <a href="?page={{ ads.next_page_number }}">next</a>
-                    <a href="?page={{ ads.paginator.num_pages }}">last &raquo;</a> {% endif %}
-                </span>
-            </div>
+            </a>
         </div>
+        {% endfor %}
     </div>
 
+    <div class="mypaginator">
+        <ul class="pagination justify-content-center m-0 p-0">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src={% static 'js/index.js' %}></script>
-</body>
+            {% if ads.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ ads.previous_page_number }}">previous</a></li>
+            {% endif %}
 
-</html>
+            <li class="page-item"><a class="page-link" href="#"> {{ ads.number }} of
+                    {{ ads.paginator.num_pages }}</a></li>
+
+            {% if ads.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ ads.next_page_number }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ ads.paginator.num_pages }}">last &raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+
+</div>
+
+<script src={% static 'js/index.js' %}></script>
 
 {% endblock content %}

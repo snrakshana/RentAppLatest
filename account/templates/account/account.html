@@ -1,51 +1,98 @@
- {% extends 'personal/base.html' %}
+{% extends 'personal/base.html' %}
+
+{% load static %} {% block content %}
+<link rel="stylesheet" href={% static 'css/index.css' %}>
+<link rel="stylesheet" href={% static 'css/ad_detail.css' %}>
+
+<div class="main-container">
+	<div class="wrapper">
+		<form class="form-signin" method="post">{% csrf_token %}
+
+			<h1 class="h3 mb-3 font-weight-normal">Account</h1>
+
+			<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required
+				autofocus value={{account_form.initial.email}}>
+
+			<input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required
+				value="{{account_form.initial.username}}">
+
+			<input type="text" name="cnumber" id="inputcnumber" class="form-control" placeholder="Contact Number"
+				required value="{{account_form.initial.cnumber}}">
+
+			{% for field in account_form %}
+			<p>
+				{% for error in field.errors %}
+			<p style="color: red">{{ error }}</p>
+			{% endfor %}
+			</p>
+			{% endfor %}
+			{% if account_form.non_field_errors %}
+			<div style="color: red">
+				<p>{{account_form.non_field_errors}}</p>
+			</div>
+
+			{% endif %}
+
+			{% if success_message %}
+			<p style="color:green; text-align: center;">{{success_message}}</p>
+			{% endif  %}
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>
+
+		</form>
+
+	</div>
+</div>
+
+<!-- Page Content  -->
+<div id="content" class="p-md-5 pt-5 pb-0">
+	<div class="row">
+		{% for ad in ads %}
+		<div class="col-lg-3 col-md-4 col-sm-6">
+			<a href="{% url 'ad_detail' ad.slug %}">
+				<div class="card card-block">
+					<img class="img-fluid" src="{{ad.image.url}}" alt="" />
+					<h5 class="card-title mt-3 mb-3">{{ad.title}}</h5>
+					<p class="card-text">{{ad.description}}</p>
+				</div>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
 
 
-{% block content %}
 
-<form class="form-signin" method="post">{% csrf_token %}
+	<!-- <div class="mypaginator">
+        <ul class="pagination justify-content-center m-0 p-0">
 
-  <h1 class="h3 mb-3 font-weight-normal">Account</h1>
+            {% if ads.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ ads.previous_page_number }}">previous</a></li>
+            {% endif %}
 
-  <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus value={{account_form.initial.email}}>
-  
-  <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required
-  value="{{account_form.initial.username}}">
+            <li class="page-item"><a class="page-link" href="#"> {{ ads.number }} of
+                    {{ ads.paginator.num_pages }}</a></li>
 
-  <input type="text" name="cnumber" id="inputcnumber" class="form-control" placeholder="Contact Number" required
-  value="{{account_form.initial.cnumber}}">
+            {% if ads.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ ads.next_page_number }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ ads.paginator.num_pages }}">last &raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div> -->
 
-  {% for field in account_form %}
-      <p>
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-  {% endfor %}
-  {% if account_form.non_field_errors %}
-    <div style="color: red">
-      <p>{{account_form.non_field_errors}}</p>
-    </div>
-      
-  {% endif %}
+</div>
 
-  {% if success_message %}
-    <p style="color:green; text-align: center;">{{success_message}}</p>
-  {% endif  %}
 
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Save changes</button>
-
-</form>
-
-  {% if ads %}
+{% comment %} {% if ads %}
 {% for ad in ads %}
-    <a href="{% url 'ad_detail' ad.slug %}">{{ad}}</a>
-     <img src="{{ad.image.url}}" alt="">
+<a href="{% url 'ad_detail' ad.slug %}">{{ad}}</a>
+<img src="{{ad.image.url}}" alt="">
 {% endfor %}
 
- {% else %}
- <p>you dont have any...  <a href="{% url 'create_ad' %}">Create one here</a></p>
-{% endif %}
+{% else %}
+<p>you dont have any... <a href="{% url 'create_ad' %}">Create one here</a></p>
+{% endif %} {% endcomment %}
 
 
 

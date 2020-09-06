@@ -1,8 +1,53 @@
+:root {
+    --main-bg-color:#CFDBD5;
+    --card-bg-color:#E8EDDF;
+    --btn-bg-color:#F5CB5C;
+    --dark-letter-color:#242423;
+    --light-letter-color:#dfe9e4;
+    --menu-bar-color:#026670;
+}
+
+.header{
+    background-color: var(--menu-bar-color);
+}
+
+.contaier-fluid{
+    background-color: var(--main-bg-color);
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn{
+    background-color: var(--btn-bg-color);
+    border-radius: 45px;
+    padding : 0.2rem 2rem;
+    color: var(--dark-letter-color);
+    font-weight: 500;
+    transition: all 0.5s ease;
+}
+
+.btn:hover,
+.btn:active{
+    background-color: #f7c53c;
+    transform: scale(1.03);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+a.nav-link{
+    margin: 0 0.5rem;
+}
+
+a i {
+    padding: 0 0.4rem;
+}
+
 div.menu-item {
     width: 100%;
     margin: 0;
-    background: #fff;
-    padding: 0;
+    background: inherit;
+    padding-right: 5px;
 }
 
 div.menu-item ul {
@@ -15,25 +60,21 @@ div.menu-item ul li {
 }
 
 div.menu-item ul li a {
-    color: #aaa;
-    font-weight: 800;
+    color: var(--light-letter-color);
+    font-weight: 400;
     text-transform: uppercase;
-}
-
-.login {
-    text-align: right;
 }
 
 div.menu-item ul li a,
 div.menu-item ul li a:after,
 div.menu-item ul li a:before {
-    transition: all .5s;
+    transition: all 0.5s ease;
 }
 
 div.menu-item ul li a:hover,
 div.menu-item ul li a:active {
     text-decoration: none;
-    color: #555;
+    /* transition: all 0.6s ease-in-out; */
 }
 
 div.menu-item ul li a {
@@ -49,12 +90,13 @@ div.menu-item ul li a:after {
     width: 0%;
     content: '.';
     color: transparent;
-    background: #333;
-    height: 1px;
+    background: var(--light-letter-color);
+    height: 1.5px;
 }
 
 div.menu-item ul li a:hover:after {
-    width: 100%;
+    width: 90%;
+    margin: 0 0.5rem;
 }
 
 .nav-link {
@@ -65,4 +107,11 @@ div.menu-item ul li a:hover:after {
     div.menu-item ul {
         float: none;
     }
+}
+
+.footer{
+    background-color: var(--dark-letter-color);
+    color: var(--light-letter-color);
+    position: absolute;
+    bottom: 0;
 }

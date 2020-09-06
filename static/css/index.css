@@ -5,32 +5,53 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-a, a:hover, a:active {
+ #content{
+  background-color: var(--main-bg-color);
+  min-height: 100%;
+ }
+
+ .row{
+    margin: auto;
+    max-width: 75%;
+    background-color: inherit;
+    padding-bottom: 1rem;
+ }
+
+ a, a:hover, a:active {
   text-decoration: none;
 }
 
 img {
-  /* height: 100%; */
-  /* width: 100%; */
+  /* height: 100%;
+  width: 100%; */
   align-content: center;
+}
+
+.img-fluid{
+  max-height: 150px;
+  min-height: 150px;
+  background-color: inherit;
 }
 
 div [class^="col-"] {
   padding-left: 2px;
   padding-right: 2px;
   margin-bottom: 1.5%;
+  height: auto;
 }
 
 .card {
   transition: 0.5s;
   cursor: pointer;
-  margin: 1%;
+  margin: auto;
+  background-color: var(--card-bg-color);
 }
 
 .card-block {
   padding: 1%;
   width: 90%;
   height: 100%;
+  max-height: 300px;
 }
 
 .card-title {
@@ -85,133 +106,34 @@ div [class^="col-"] {
   transform: scale3d(1, 1, 1);
 }
 
-.wrapper {
-  width: 100%;
+ .mypaginator{
+  align-items: center;
+  justify-content: center;
+  display: block;
+  margin-top: auto;
 }
 
-#sidebar {
-  min-width: 270px;
-  max-width: 270px;
-  min-height: 100%;
-  background: #3445b4;
-  color: #fff;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-  position: relative;
-}
+@media screen and (max-width: 768px){
+ .row{
+      max-width: 100%;
+      /* margin-right: -20px; */
+      margin: auto;
+   }
 
-
-
-#sidebar.active {
-  margin-left: -270px;
-}
-
-@media (max-width: 991.98px) {
-  #sidebar {
-    margin-left: -270px;
+   .img-fluid{
+    max-height: unset;
+    min-height: unset;
   }
-  #sidebar.active {
-    margin-left: 0;
+
+  .card-block {
+    max-height: unset;
+    min-height: unset;
   }
+  
 }
 
-#sidebar .custom-menu {
-  display: inline-block;
-  position: absolute;
-  top: 20px;
-  right: 0;
-  margin-right: -20px;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
-}
 
-@media (prefers-reduced-motion: reduce) {
-  #sidebar .custom-menu {
-    -webkit-transition: none;
-    -o-transition: none;
-    transition: none;
-  }
-}
 
-#sidebar .custom-menu .btn {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  position: relative;
-}
-
-#sidebar .custom-menu .btn i {
-  margin-right: -40px;
-  font-size: 14px;
-}
-
-#sidebar .custom-menu .btn.btn-primary {
-  background: transparent;
-  border-color: transparent;
-}
-
-#sidebar .custom-menu .btn.btn-primary:after {
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: '';
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  background: #3445b4;
-  border-radius: 10px;
-}
-
-#sidebar .custom-menu .btn.btn-primary:hover, #sidebar .custom-menu .btn.btn-primary:focus {
-  background: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-}
-
-@media (max-width: 700px) {
-  #sidebarCollapse span {
-    display: none;
-  }
-}
-
-#content {
-  width: 100%;
-  padding: 0;
-  min-height: 100vh;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-.btn .btn-primary {
-  background: #3445b4;
-  border-color: #3445b4;
-}
-
-.btn .btn-primary:hover, .btn.btn-primary:focus {
-  background: #3445b4 !important;
-  border-color: #3445b4 !important;
-}
-
-.footer p {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.form-control {
-  height: 40px !important;
-  background: #fff;
-  color: #000;
-  font-size: 13px;
-  border-radius: 4px;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-  border: transparent;
-}
 
 
 

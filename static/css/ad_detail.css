@@ -1,0 +1,256 @@
+*,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .main-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        background-color: var(--main-bg-color);
+        overflow:hidden;
+    }
+
+    .share-button {
+        width: fit-content;
+        height: fit-content;
+        border-radius: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 50px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        transition: .3s linear;
+    }
+
+    .share-button:hover {
+        transform: scale(1.1);
+    }
+
+    .share-button span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        background: var(--menu-bar-color);;
+        color: var(--light-letter-color);
+        text-align: center;
+        transition: .6s linear;
+        border-radius: 40px;
+
+    }
+
+    .share-button:hover span {
+        transform: translateX(-100%);
+        transition-delay: .3s;
+    }
+
+    .share-button p {
+        flex: 1;
+        line-height: 65px;
+        opacity: 0;
+        transition: .3s linear;
+    }
+
+    .share-button:hover p {
+        opacity: 1;
+        transform: translateX(0);
+        transition-delay: 0.7s;
+    }
+
+
+
+    /* 
+* Design by Robert Mayer:https://goo.gl/CJ7yC8
+*
+*I intentionally left out the line that was supposed to be below the subheader simply because I don't like how it looks.
+*
+* Chronicle Display Roman font was substituted for similar fonts from Google Fonts.
+*/
+
+    .wrapper {
+        height: 80%;
+        width: 70%;
+        margin: 50px auto;
+        border-radius: 7px 7px 7px 7px;
+        align-items: center;
+        /* VIA CSS MATIC https://goo.gl/cIbnS */
+        -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .product-img {
+        float: left;
+        height: 100%;
+        width: 50%;
+        background-color: var(--card-bg-color);
+
+    }
+
+    .product-img img {
+        border-radius: 7px;
+        transform: translate(-4rem, 4rem);
+        height: 80%;
+        width: 100%;
+    }
+
+    .product-info {
+        float: left;
+        height: 100%;
+        width: 50%;
+        border-radius: 0 7px 10px 7px;
+        background-color: var(--card-bg-color);
+    }
+
+
+    .product-text {
+        height: 70%;
+        width: 100%;
+    }
+
+    .product-text h1 {
+        margin: 0 0 0 38px;
+        padding-top: 52px;
+        font-size: 34px;
+        color: #474747;
+    }
+
+    .product-text h1,
+    .product-price-btn p {
+        font-family: 'Bentham', serif;
+    }
+
+    .product-text h2 {
+        margin: 0 0 27px 38px;
+        font-size: 19px;
+        font-family: 'Bentham', serif;
+        font-weight: 400;
+        text-transform: capitalize;
+        color: #585757;
+    }
+
+    .product-text p {
+        margin: 0 0 0 38px;
+        font-family: 'Playfair Display', serif;
+        color: #8d8d8d;
+        line-height: 1.7em;
+        font-size: 15px;
+        font-weight: lighter;
+    }
+
+    .product-price-btn {
+        margin-right: 50px;
+        margin-top: 25px;
+    }
+
+    .product-price-btn p {
+        height: 50px;
+        font-family: 'Trocchi', serif;
+        font-size: 18px;
+        font-weight: lighter;
+        color: #474747;
+        float: left;
+    }
+
+    .product-price-btn span {
+        height: 30px;
+        font-family: 'Suranna', serif;
+        font-size: 34px;
+    }
+
+    .product-price-btn button {
+        float: right;
+        height: 30px;
+        margin-top: 2%;
+        width: 176px;
+        box-sizing: border-box;
+        border: transparent;
+        text-align: center;
+        border-radius: 60px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--dark-letter-color);
+        background-color: var(--main-bg-color);
+        cursor: pointer;
+        outline: none;
+    }
+
+    .editable {
+        margin-right: 50px;
+        float: right;
+        margin-top: 15px;
+    }
+
+
+
+    @media (max-width: 800px) {
+        .main-container {
+            align-items: unset;
+        }
+
+        .wrapper {
+            height: 80%;
+            width: 90%;
+            margin-top: 15px;
+            border-radius: 7px 7px 7px 7px;
+            /* VIA CSS MATIC https://goo.gl/cIbnS */
+            -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+            box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-img {
+            float: none;
+            border-radius: 7px 7px 0 0;
+            height: 50%;
+            width: 100%;
+        }
+
+        .product-img img {
+            border-radius: 7px 7px 0 0;
+            transform: translate(0, 0);
+            height: 100%;
+        }
+
+        .product-info {
+            float: none;
+            height: 70%;
+            width: 100%;
+            border-radius: 0 0 10px 7px;
+            background-color: #ffffff;
+        }
+
+        .product-price-btn p {
+            float: unset;
+            width: 100%;
+            text-align: center;
+        }
+
+        .product-price-btn {
+            margin: 0;
+            width: 100%;
+        }
+
+        .product-price-btn button {
+            float: unset;
+            justify-content: center;
+            margin: auto;
+            padding: 0;
+        }
+
+
+    }
