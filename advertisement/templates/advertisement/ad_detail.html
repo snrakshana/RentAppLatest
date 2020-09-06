@@ -12,9 +12,9 @@
             <div class="editable">
                 <form method="POST" action="{% url 'delete_ad' ad_detail.slug %}">
                     {% csrf_token %}
-                    <a href="{% url 'edit_ad' ad_detail.slug %}" class="btn btn-secondary btn-sm">Update
+                    <a href="{% url 'edit_ad' ad_detail.slug %}" class="btn btn-sm">Update
                         post</a>
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    <button type="submit" class="btn btn-sm">Delete</button>
                 </form>
             </div>
             {% endif %}
@@ -24,7 +24,6 @@
                 <p>
                     Description - {{ad_detail.description}}<br>
                     is negotiable - {{ad_detail.is_negotiable}}<br>
-                    date published - {{ad_detail.date_published}}<br>
                     author - {{ad_detail.author}}<br>
                 </p>
                 <table class="table">
@@ -57,11 +56,18 @@
                     <p>{{ad_detail.author.cnumber}}</p>
                 </button>
             </div>
+            <div class="date-section">
+                <h6>date published - {{ad_detail.date_published}}</h6>
+            </div>
 
         </div>
 
     </div>
 </div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
 
 

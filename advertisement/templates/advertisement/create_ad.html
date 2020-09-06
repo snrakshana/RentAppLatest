@@ -1,17 +1,21 @@
 {% extends 'personal/base.html' %}
 
-
 {% block content %}
 
 
 
+<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
 
-			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
-                
-                {{form.as_p}}
-				<button type="submit">Submit</button>
-			</form>	
-	
+	{{form.as_p}}
+	<button type="submit">Submit</button>
+</form>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+
 
 
 
